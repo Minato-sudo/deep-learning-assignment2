@@ -13,7 +13,8 @@
 **Denoising Diffusion Probabilistic Models**  
 Ho, Jain & Abbeel — NeurIPS 2020  
 [arXiv:2006.11239](https://arxiv.org/abs/2006.11239)
-
+Official Code: https://github.com/hojonathanho/diffusion
+Model Checkpoint: https://huggingface.co/google/ddpm-cifar10-32
 ---
 
 ## Results Summary
