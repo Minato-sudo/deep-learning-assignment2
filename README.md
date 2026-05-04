@@ -30,6 +30,19 @@ This repository contains all code, logs, and reports for a three-part deep learn
 | A1 | Paper Understanding | ✅ Done |
 | A2 | Reproduction of DDPM Results on CIFAR-10 | ✅ Done |
 | A3 | Experimentation and Extension | ✅ Done |
+| **Final** | **Official Repo Reproduction Attempt** | **🔄 In Progress** |
+
+---
+
+## 📢 Response to Teacher Feedback: Official Repo vs. Pretrained Models
+
+In our initial submission, we utilized the HuggingFace `diffusers` library with a pretrained `google/ddpm-cifar10-32` checkpoint. Following feedback from our instructor, we have pivoted to include a reproduction attempt using the **official repository** (Ho et al., 2020).
+
+### The Challenge of Original Reproduction
+1. **Hardware Incompatibility:** The original code is written in **TensorFlow 1.15**, which is notoriously difficult to run on modern Linux kernels and Blackwell architecture (RTX 5050) without significant containerization or environment hacks.
+2. **Computational Scale:** Training the DDPM model from scratch on CIFAR-10 to reach the paper's FID of 3.17 requires approximately **800,000 steps**.
+   - On a single consumer-grade laptop GPU (RTX 5050), full training is estimated to take **10–14 days of continuous computation**.
+   - **Our Strategy:** To satisfy the requirement of using the official pipeline, we are running the original code for a **limited number of steps (e.g., 50,000 steps)**. This allows us to validate the data pipeline and training loop without exceeding the project's timeframe or thermal limits of a laptop.
 
 ---
 
