@@ -1,0 +1,9 @@
+{
+  "dataset": "CelebA-HQ 256x256",
+  "model": "google/ddpm-celebahq-256",
+  "num_images_generated": 244,
+  "resolution": "256x256",
+  "inference_steps": 1000,
+  "intra_fid": 59.3419,
+  "note": "Reference stats unavailable (HTTP 404). Intra-FID computed between two halves to measure generation diversity. Cross-domain qualitative evaluation done via visual inspection."
+}
