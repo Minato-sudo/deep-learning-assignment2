@@ -2,3 +2,5 @@ dl_env/
 data/
 outputs/
 *.zip
+repo/original_architecture_reproduction/logs/**/*.pt
+repo/original_architecture_reproduction/logs/**/*.npz

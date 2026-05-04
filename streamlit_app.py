@@ -9,6 +9,7 @@ from PIL import Image
 from diffusers import DDPMPipeline, DDIMPipeline
 from cleanfid import fid
 import time
+import glob
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -79,6 +80,7 @@ with st.sidebar:
     st.image("https://img.icons8.com/nolan/96/atom.png", width=70)
     menu = st.radio("Navigation", [
         "🏁 Project Timeline",
+        "🔬 Original Repo Lab",
         "📡 Live Inference Lab",
         "📊 Experiment Analytics",
         "📂 Documentation & Logs"
@@ -131,7 +133,41 @@ if menu == "🏁 Project Timeline":
         st.markdown('<div class="metric-card"><h3>Efficiency</h3><h2 style="color:#f59e0b">20x</h2><p>Sampling Speedup</p></div>', unsafe_allow_html=True)
 
 # ==========================================
-# SECTION: Live Inference Lab (ADVANCED)
+# SECTION: Original Repo Lab (NEW)
+# ==========================================
+elif menu == "🔬 Original Repo Lab":
+    st.markdown('<h2 class="section-header">Official Repository Reproduction Progress</h2>', unsafe_allow_html=True)
+    st.info("""
+    **Objective:** Reproduce Ho et al. 2020 using the official U-Net architecture and hyperparameters.  
+    **Constraint:** Full training (800k steps) requires 10-14 days. We are running a **50,000 step benchmark** to validate the pipeline.
+    """)
+    
+    sample_dir = "repo/original_architecture_reproduction/logs/DDPM_Reproduction_Attempt/sample/"
+    
+    if os.path.exists(sample_dir):
+        images = glob.glob(os.path.join(sample_dir, "*.png"))
+        if images:
+            # Sort by step number
+            images.sort(key=lambda x: int(os.path.basename(x).split('.')[0]))
+            
+            latest_img = images[-1]
+            st.subheader(f"Latest Sample: Step {os.path.basename(latest_img).split('.')[0]}")
+            st.image(latest_img, caption="Evolution of CIFAR-10 generation from scratch", width=600)
+            
+            st.divider()
+            st.subheader("Training History (Every 1000 steps)")
+            cols = st.columns(4)
+            for i, img_path in enumerate(reversed(images[:-1])):
+                step = os.path.basename(img_path).split('.')[0]
+                with cols[i % 4]:
+                    st.image(img_path, caption=f"Step {step}")
+        else:
+            st.warning("Training started! Waiting for the first sample (Step 1000)...")
+    else:
+        st.error("Training directory not found. Please ensure the training script is running.")
+
+# ==========================================
+# SECTION: Live Inference Lab
 # ==========================================
 elif menu == "📡 Live Inference Lab":
     st.markdown('<h2 class="section-header">Live Generation & Real-Time Pipeline</h2>', unsafe_allow_html=True)
@@ -200,7 +236,7 @@ elif menu == "📊 Experiment Analytics":
     tab1, tab2 = st.tabs(["Step Ablation Curve", "Eta Phase Transition"])
     
     with tab1:
-        res = get_results("results_step_ablation.json")
+        res = get_results("logs/results_step_ablation.json")
         if res:
             df = pd.DataFrame(list(res.items()), columns=['Steps', 'FID'])
             df['Steps'] = df['Steps'].astype(int)
@@ -229,7 +265,7 @@ elif menu == "📊 Experiment Analytics":
             st.info("**Scientific Insight:** While DDPM 1000 steps has the lowest FID, our **DDIM 50-step** configuration provides a **20x speedup** with only a minor increase in FID, making it the most practical 'Sweet Spot' for deployment.")
 
     with tab2:
-        res = get_results("results_eta_study.json")
+        res = get_results("logs/results_eta_study.json")
         if res:
             df = pd.DataFrame(list(res.items()), columns=['Eta', 'FID'])
             df['Eta'] = df['Eta'].astype(float)
@@ -248,12 +284,12 @@ elif menu == "📂 Documentation & Logs":
     col_log, col_file = st.columns(2)
     with col_log:
         st.subheader("Raw Results (JSON)")
-        file_sel = st.selectbox("View JSON", ["results_step_ablation.json", "results_eta_study.json", "results_crossdomain.json"])
+        file_sel = st.selectbox("View JSON", ["logs/results_step_ablation.json", "logs/results_eta_study.json", "logs/results_crossdomain.json"])
         st.json(get_results(file_sel))
         
     with col_file:
         st.subheader("Experiment Scripts")
-        scr_sel = st.selectbox("View Code", ["experiment_steps.py", "experiment_eta.py", "experiment_crossdomain.py"])
+        scr_sel = st.selectbox("View Code", ["scripts/experiment_steps.py", "scripts/experiment_eta.py", "scripts/experiment_crossdomain.py"])
         if os.path.exists(scr_sel):
             with open(scr_sel, 'r') as f:
                 st.code(f.read(), language="python")
