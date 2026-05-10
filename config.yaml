@@ -1,0 +1,14 @@
+project: "DDPM Reproduction"
+dataset: "CIFAR-10"
+model:
+  ch: 128
+  ch_mult: [1, 2, 2, 2]
+  attn: [1]
+  num_res_blocks: 2
+  dropout: 0.1
+training:
+  steps: 800000
+  batch_size: 128
+  lr: 2e-4
+inference:
+  steps: 1000

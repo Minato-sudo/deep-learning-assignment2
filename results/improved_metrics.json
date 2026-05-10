@@ -1,0 +1,5 @@
+{
+    "ddim_10_steps_eta_0": 65.72,
+    "ddim_200_steps_eta_0": 42.13,
+    "notes": "See README for full step ablation and eta study results."
+}

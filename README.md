@@ -34,7 +34,7 @@ As required for evaluation, this repository includes a **fully runnable inferenc
 
 | Notebook | Link |
 |---|---|
-| **Inference Demo** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Minato-sudo/deep-learning-assignment2/blob/master/Inference_Demo.ipynb) |
+| **Inference Demo** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Minato-sudo/deep-learning-assignment2/blob/master/notebooks/01_inference_demo.ipynb) |
 
 ### How to Run the Inference Notebook
 **Option 1: Google Colab (Recommended)**
@@ -47,11 +47,11 @@ As required for evaluation, this repository includes a **fully runnable inferenc
    ```bash
    git clone https://github.com/Minato-sudo/deep-learning-assignment2.git
    cd deep-learning-assignment2
-   pip install diffusers accelerate torch torchvision matplotlib tensorboardX tqdm Pillow jupyter
+   pip install -r requirements.txt
    ```
 2. Launch Jupyter Notebook:
    ```bash
-   jupyter notebook Inference_Demo.ipynb
+   jupyter notebook notebooks/01_inference_demo.ipynb
    ```
 3. Run all cells to execute the experiments and see the generated results.
 

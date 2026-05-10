@@ -1,0 +1,5 @@
+{
+    "official_paper_fid": 3.17,
+    "our_reproduction_fid": 20.91,
+    "notes": "Generated 10,000 samples using pretrained weights due to hardware constraints."
+}
