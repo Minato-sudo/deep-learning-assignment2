@@ -36,6 +36,25 @@ As required for evaluation, this repository includes a **fully runnable inferenc
 |---|---|
 | **Inference Demo** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Minato-sudo/deep-learning-assignment2/blob/master/Inference_Demo.ipynb) |
 
+### How to Run the Inference Notebook
+**Option 1: Google Colab (Recommended)**
+1. Click the "Open In Colab" badge above.
+2. In Colab, go to **Runtime** > **Change runtime type** and select **T4 GPU** or higher.
+3. Click **Runtime** > **Run all**. The first cell automatically clones the repository and installs all dependencies.
+
+**Option 2: Local Jupyter Environment**
+1. Clone the repository and install requirements:
+   ```bash
+   git clone https://github.com/Minato-sudo/deep-learning-assignment2.git
+   cd deep-learning-assignment2
+   pip install diffusers accelerate torch torchvision matplotlib tensorboardX tqdm Pillow jupyter
+   ```
+2. Launch Jupyter Notebook:
+   ```bash
+   jupyter notebook Inference_Demo.ipynb
+   ```
+3. Run all cells to execute the experiments and see the generated results.
+
 ---
 
 ## Primary Paper Reproduced
