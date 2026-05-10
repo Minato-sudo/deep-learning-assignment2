@@ -28,6 +28,16 @@ This repository contains the complete work for a three-part deep learning course
 
 ---
 
+## 🚀 Quick Start — Inference Notebook
+
+As required for evaluation, this repository includes a **fully runnable inference notebook**.
+
+| Notebook | Link |
+|---|---|
+| **Inference Demo** | [../Inference_Demo.ipynb](../Inference_Demo.ipynb) |
+
+---
+
 ## Primary Paper Reproduced
 
 **Denoising Diffusion Probabilistic Models**
