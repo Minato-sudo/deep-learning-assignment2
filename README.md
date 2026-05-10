@@ -34,7 +34,7 @@ As required for evaluation, this repository includes a **fully runnable inferenc
 
 | Notebook | Link |
 |---|---|
-| **Inference Demo** | [Inference_Demo.ipynb](Inference_Demo.ipynb) |
+| **Inference Demo** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Minato-sudo/deep-learning-assignment2/blob/master/Inference_Demo.ipynb) |
 
 ---
 
