@@ -1,7 +1,26 @@
 import os
-import sys
+import torch
+from diffusers import DDPMPipeline
 
-# Wrapper to match standard template
+def run_inference():
+    print("--- Running Basic Inference ---")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model_id = "google/ddpm-cifar10-32"
+    
+    print(f"Loading pretrained model: {model_id}")
+    pipeline = DDPMPipeline.from_pretrained(model_id).to(device)
+    
+    print("Generating 1 sample image...")
+    # Generate a single image
+    with torch.no_grad():
+        image = pipeline(batch_size=1, num_inference_steps=50).images[0]
+        
+    os.makedirs("results", exist_ok=True)
+    save_path = "results/sample_inference_output.png"
+    image.save(save_path)
+    
+    print(f"Success! Image saved to {save_path}")
+    print("For full interactive inference and experiments, please run notebooks/01_inference_demo.ipynb")
+
 if __name__ == "__main__":
-    print("Inference Demo is located in notebooks/01_inference_demo.ipynb.")
-    print("To run specific experiments, use the scripts in the scripts/ folder.")
+    run_inference()
